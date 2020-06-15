@@ -1,6 +1,6 @@
 # pyright: strict
 
-from typing import Union
+from typing import Union, Tuple, overload
 from note_event import NoteEvent
 
 
@@ -13,7 +13,17 @@ class NoteSequence():
   def __repr__(self):
     return ''.join(event.__repr__() + '\n' for event in self.events)
 
-  def __getitem__(self, key: int):
+  @overload
+  def __getitem__(self, key: int) -> NoteEvent:
+    ...
+
+  @overload
+  def __getitem__(self, key: slice) -> Tuple[NoteEvent]:
+    ...
+
+  def __getitem__(self, key: Union[int, slice]):
+    if isinstance(key, int):
+      return self.events[key]
     return self.events[key]
 
   def __len__(self):
