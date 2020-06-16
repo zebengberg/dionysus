@@ -29,6 +29,9 @@ class NoteSequence():
   def __len__(self):
     return len(self.events)
 
+  def __iter__(self):
+    return iter(self.events)
+
   def __add__(self, other: Union['NoteSequence', 'NoteEvent']):
     if isinstance(other, NoteEvent):
       other = NoteSequence(other)

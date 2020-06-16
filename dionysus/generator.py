@@ -20,7 +20,8 @@ def get_transformation_annomations():
     ret_type = sig.return_annotation
     if ret_type == inspect._empty:
       raise NotImplementedError(f'Transformation {name} has no return annotation.')
-    transformations_list.append({'name': name, 'function': f, 'input_types': input_types, 'ret_type': ret_type})
+    transformations_list.append({'name': name, 'function': f,
+                                 'input_types': input_types, 'ret_type': ret_type})
   return transformations_list
 
 
@@ -30,6 +31,7 @@ def generate(n_trans: int):
   s = NoteSequence(NoteEvent())  # starting with random NoteEvent
   for _ in range(n_trans):
     t = random.choice(trans)
+    print(t['name'])
     if t['input_types'] == [NoteEvent]:
       n = s[-1]
       s += t['function'](n)
@@ -45,10 +47,6 @@ def generate(n_trans: int):
         s += t['function'](s[-5: -1])
       else:
         s += t['function'](s)
+    else:
+      raise NotImplementedError('Signature not recognized by generate!')
   return s
-
-
-
-if __name__ == '__main__':
-  song = generate(10)
-  print(song)

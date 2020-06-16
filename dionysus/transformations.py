@@ -30,13 +30,11 @@ def bit_or(n: NoteEvent, m: NoteEvent) -> NoteEvent:
 # def resolve():
 #   pass
 
-# def syncopate():
-#   pass
+def half_time(n: NoteEvent) -> NoteEvent:
+  return NoteEvent(*n, duration=n.duration / 2)
 
 def union(s: NoteSequence) -> NoteEvent:
   n = s[-1]
   for m in s:
     n |= m
   return n
-
-

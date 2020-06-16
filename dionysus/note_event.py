@@ -7,7 +7,7 @@ from typing import Optional, Union, Tuple, overload
 class NoteEvent():
   """Container for a music event at a instant."""
 
-  def __init__(self, *notes: bool, duration: float = 1):
+  def __init__(self, *notes: bool, duration: float = 0.5):
     if notes:
       self.notes = notes
     else:
@@ -40,6 +40,9 @@ class NoteEvent():
 
   def __len__(self):
     return len(self.notes)
+
+  def __iter__(self):
+    return iter(self.notes)
 
   def __eq__(self, other: 'NoteEvent'):
     return self.notes == other.notes

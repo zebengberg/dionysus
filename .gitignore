@@ -1,2 +1,6 @@
-.venv/
-__pycache__/
+.venv
+__pycache__
+.vscode
+poetry.lock
+pyrightconfig.json
+dionysus/test_song.mid
